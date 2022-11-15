@@ -3,33 +3,22 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ScheduleModule } from '@nestjs/schedule';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TodoModule } from './todo/todo.module';
-// import { TodoSchema } from './todo/schemas/todo.schema';
-// import { PresaleInfoSchema } from './presale/schema/presaleInfo.schema';
-// import { PartnerSchema } from './presale/schema/partner.schema';
-// import { PairSchema } from './pair/schemas/pair.schema';
+import { CROSSWISE_NETWORK } from './helpers/constants';
+import { UserModule } from './user_module/user_module.module';
 require('dotenv').config();
 
 const MONGODB_URI = process.env.MONGODB_URI;
+
 @Module({
   imports: [
+    UserModule,
     ScheduleModule.forRoot(),
-    MongooseModule.forRoot(`${MONGODB_URI}/testDB?authSource=admin`, {
-      connectionName: 'testDB',
-    }),
-    MongooseModule.forRoot(`${MONGODB_URI}/uniswap_v2_pairs?authSource=admin`, {
-      connectionName: 'uniswap_v2_pairs',
-    }),
     MongooseModule.forRoot(
-      `${MONGODB_URI}/native_coin_history?authSource=admin`,
+      `${MONGODB_URI}/${CROSSWISE_NETWORK.name}?authSource=admin`,
       {
-        connectionName: 'native_coin_history',
+        connectionName: CROSSWISE_NETWORK.name,
       },
     ),
-    MongooseModule.forRoot(`${MONGODB_URI}/meta_tx_logs?authSource=admin`, {
-      connectionName: 'meta_tx_logs',
-    }),
-    TodoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
