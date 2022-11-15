@@ -1,11 +1,8 @@
 export class BaseProfileDto {
-  profileId: number;
-  name: string;
-  description: string;
-  price: number;
-  downloadLink: string;
-  featured: boolean;
-  oneTime: boolean;
+  wallet: string;
+  username: string;
+  email: string;
+  telegram: string;
 }
 
 export class UpdateProfileDto extends BaseProfileDto {

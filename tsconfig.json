@@ -17,10 +17,9 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "resolveJsonModule": true,    
-    "lib": [
-      "ES2021"
-    ]
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["ES2021"]
   },
   "exclude": ["node_modules", "dist", "public", "uploads_logo"]
 }
